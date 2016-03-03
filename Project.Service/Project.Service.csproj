@@ -50,7 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Maker.cs" />
+    <Compile Include="IMaker.cs" />
+    <Compile Include="IModel.cs" />
+    <Compile Include="MakeVehicle.cs" />
+    <Compile Include="MakeAbstract.cs" />
+    <Compile Include="ModelAbstract.cs" />
+    <Compile Include="ModelVehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

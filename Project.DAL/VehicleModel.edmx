@@ -54,7 +54,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VehicleName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="VehicleAbbreviation" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="VehicleModel" Relationship="Self.FK__VehicleMo__MakeI__1273C1CD" FromRole="VehicleMake" ToRole="VehicleModel" />
+          <NavigationProperty Name="VehicleModels" Relationship="Self.FK__VehicleMo__MakeI__1273C1CD" FromRole="VehicleMake" ToRole="VehicleModel" />
         </EntityType>
         <EntityType Name="VehicleModel">
           <Key>
@@ -79,11 +79,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="VehiclesDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="VehicleMake" EntityType="Self.VehicleMake" />
-          <EntitySet Name="VehicleModel" EntityType="Self.VehicleModel" />
+          <EntitySet Name="VehicleMakes" EntityType="Self.VehicleMake" />
+          <EntitySet Name="VehicleModels" EntityType="Self.VehicleModel" />
           <AssociationSet Name="FK__VehicleMo__MakeI__1273C1CD" Association="Self.FK__VehicleMo__MakeI__1273C1CD">
-            <End Role="VehicleMake" EntitySet="VehicleMake" />
-            <End Role="VehicleModel" EntitySet="VehicleModel" />
+            <End Role="VehicleMake" EntitySet="VehicleMakes" />
+            <End Role="VehicleModel" EntitySet="VehicleModels" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -92,7 +92,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="VehiclesDBModelStoreContainer" CdmEntityContainer="VehiclesDBEntities">
-          <EntitySetMapping Name="VehicleMake">
+          <EntitySetMapping Name="VehicleMakes">
             <EntityTypeMapping TypeName="VehiclesDBModel.VehicleMake">
               <MappingFragment StoreEntitySet="VehicleMake">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -101,7 +101,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VehicleModel">
+          <EntitySetMapping Name="VehicleModels">
             <EntityTypeMapping TypeName="VehiclesDBModel.VehicleModel">
               <MappingFragment StoreEntitySet="VehicleModel">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -125,7 +125,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

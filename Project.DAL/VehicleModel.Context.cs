@@ -25,7 +25,7 @@ namespace Project.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<VehicleMake> VehicleMake { get; set; }
-        public virtual DbSet<VehicleModel> VehicleModel { get; set; }
+        public virtual DbSet<VehicleMake> VehicleMakes { get; set; }
+        public virtual DbSet<VehicleModel> VehicleModels { get; set; }
     }
 }
