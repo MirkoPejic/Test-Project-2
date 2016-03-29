@@ -9,7 +9,6 @@ namespace Project.Service
 {
     interface IModel
     {
-        // Take all produced vehicles
-        List<VehicleModel> GetAllModels();
+
     }
 }

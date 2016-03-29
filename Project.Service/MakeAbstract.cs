@@ -12,9 +12,6 @@ namespace Project.Service
 {
     public abstract class MakeAbstract : IMaker
     {
-        
-        public abstract List<VehicleMake> GetAllMaker();
-        public abstract void AddVehicleMake(VehicleMake vehicleMake);
-        
+
     }
 }

@@ -11,48 +11,29 @@ namespace Project.Service
 {
     public class MakeVehicle : MakeAbstract
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["VehiclesDBEntities"].ConnectionString;
-        public override List<VehicleMake> GetAllMaker()
+        private VehiclesDBEntities db = new VehiclesDBEntities();
+
+        public IQueryable<VehicleMake> SortOrder(string sortOrder)
         {
-            List<VehicleMake> vehicleManufacturer = new List<VehicleMake>();
-            using (SqlConnection con = new SqlConnection(connectionString))
+            var vehicleMakes = from vMakers in db.VehicleMakes
+                               select vMakers;
+            switch (sortOrder)
             {
-                SqlCommand cmd = new SqlCommand("spGetAllMaker", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                con.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    VehicleMake vehicleMake = new VehicleMake();
-                    vehicleMake.Id = Convert.ToInt32(rdr["Id"]);
-                    vehicleMake.VehicleName = rdr["VehicleName"].ToString();
-                    vehicleMake.VehicleAbbreviation = rdr["VehicleAbbreviation"].ToString();
-
-                    vehicleManufacturer.Add(vehicleMake);
-                }
+                case "name_desc":
+                    vehicleMakes = vehicleMakes.OrderByDescending(v => v.VehicleName);
+                    break;
+                case "abbreviation":
+                    vehicleMakes = vehicleMakes.OrderBy(v => v.VehicleAbbreviation);
+                    break;
+                case "abbreviation_desc":
+                    vehicleMakes = vehicleMakes.OrderByDescending(v => v.VehicleAbbreviation);
+                    break;
+                default:
+                    vehicleMakes = vehicleMakes.OrderBy(v => v.VehicleName);
+                    break;
             }
-            return vehicleManufacturer;
-        }
-        public override void AddVehicleMake(VehicleMake vehicleMake)
-        {
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                SqlCommand cmd = new SqlCommand("spAddVehicleMake", con);
-                cmd.CommandType = CommandType.StoredProcedure;
 
-                SqlParameter paramVehicleName = new SqlParameter();
-                paramVehicleName.ParameterName = "@VehicleName";
-                paramVehicleName.Value = vehicleMake.VehicleName;
-                cmd.Parameters.Add(paramVehicleName);
-
-                SqlParameter paramVehicleAbbreviation = new SqlParameter();
-                paramVehicleAbbreviation.ParameterName = "@VehicleAbbreviation";
-                paramVehicleAbbreviation.Value = vehicleMake.VehicleAbbreviation;
-                cmd.Parameters.Add(paramVehicleAbbreviation);
-
-                con.Open();
-                cmd.ExecuteNonQuery();
-            }
+            return vehicleMakes;
         }
     }
 }

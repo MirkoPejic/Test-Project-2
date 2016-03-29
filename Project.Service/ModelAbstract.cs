@@ -11,7 +11,6 @@ namespace Project.Service
 {
     public abstract class ModelAbstract : IModel
     {
-        public abstract List<VehicleModel> GetAllModels();
 
     }
 }

@@ -11,6 +11,7 @@ namespace Project.DAL
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class VehicleMake
     {
@@ -19,9 +20,11 @@ namespace Project.DAL
         {
             this.VehicleModels = new HashSet<VehicleModel>();
         }
-    
+
         public int Id { get; set; }
+        [Required]
         public string VehicleName { get; set; }
+        [Required]
         public string VehicleAbbreviation { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
