@@ -19,7 +19,6 @@ namespace Project2.Controllers
         // GET: VehicleMakes
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            MakeVehicle makeVehicle = new MakeVehicle();
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.AbbreviationSortParm = sortOrder == "abbreviation" ? "abbreviation_desc" : "abbreviation";
 
